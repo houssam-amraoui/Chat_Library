@@ -1,2 +1,3 @@
+include ':chatlib'
 include ':app'
 rootProject.name = "chat_lib"
