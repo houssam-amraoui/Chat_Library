@@ -20,8 +20,7 @@ public class Builder{
     private List<MessageModel> messageList;
     
     private String CurrentUserId;
-    
-    
+
     public Builder setRecycler(RecyclerView recycler) {
         this.recycler = recycler;
         return this;
@@ -52,7 +51,7 @@ public class Builder{
     public ChatManager build() {
         // TODO: 04/04/2021 add throw exption 
 
-        ChatManager chatManager = new ChatManager(recycler,layoutReciverId,layoutSenderId,textId,imageId,progressId,textTimeId,messageList);
+        ChatManager chatManager = new ChatManager(recycler,layoutReciverId,layoutSenderId,textId,imageId,progressId,textTimeId,messageList,CurrentUserId);
         chatManager.init();
         return chatManager;
     }

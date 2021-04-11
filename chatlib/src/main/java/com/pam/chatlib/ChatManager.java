@@ -1,9 +1,22 @@
 package com.pam.chatlib;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.pam.chatlib.adapter.ChatAdapterV2;
 import com.pam.chatlib.model.MessageModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChatManager {
@@ -15,10 +28,15 @@ public class ChatManager {
     private int imageId;
     private int progressId;
     private int textTimeId;
+    private String currentUser;
+    private String child;
+    private String childAdd;
+
+
 
     private List<MessageModel> messageList;
 
-    ChatManager(RecyclerView recycler, int reciverId, int senderId, int textId, int imageId, int progressId, int textTimeId,List<MessageModel> messageList) {
+    ChatManager(RecyclerView recycler, int reciverId, int senderId, int textId, int imageId, int progressId, int textTimeId,List<MessageModel> messageList,String currentUser) {
         this.recycler = recycler;
         this.reciverId = reciverId;
         this.senderId = senderId;
@@ -27,6 +45,8 @@ public class ChatManager {
         this.progressId = progressId;
         this.textTimeId = textTimeId;
         this.messageList = messageList;
+        this.currentUser=currentUser;
+
     }
 
     public static Builder Builder(){
@@ -34,13 +54,25 @@ public class ChatManager {
     }
 
     void init(){
-        // adapter
-        // show data in resycler
+        ChatAdapterV2 adapter = new ChatAdapterV2(recycler.getContext(),currentUser,senderId,reciverId);
+        recycler.setLayoutManager(new LinearLayoutManager(recycler.getContext()));
+        recycler.setAdapter(adapter);
 
+    }
+    void updateChanges(MessageModel messageModel){
+        DatabaseReference database=FirebaseDatabase.getInstance().getReference();
+        database.child(child).child(childAdd);
+        HashMap<String,MessageModel> messageModelHashMap= new HashMap<>();
+    }
+    void sendMessageFirstTime(){
     }
 
     public void sendMessage(MessageModel messageModel){
 
+    }
+    public void addRoom(){
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference ref=database.getReference().child("chat");
     }
 
 }

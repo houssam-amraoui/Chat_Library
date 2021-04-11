@@ -1,6 +1,8 @@
 package com.pam.chatlib.model;
 
 
+import static java.lang.Boolean.getBoolean;
+
 public class MessageModel {
 
     private String receiver_id;
@@ -93,4 +95,5 @@ public class MessageModel {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
 }

@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.pam.chatlib.ChatManager;
 import com.pam.chatlib.model.MessageModel;
-
+//nihahahahahahahahahahahahahah
 public class MainActivity extends AppCompatActivity {
     RecyclerView chat;
     ImageButton sendBtn;
@@ -23,14 +25,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         chat = findViewById(R.id.listMessages);
         sendBtn = findViewById(R.id.sendMessageButton);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
         chatManager = ChatManager.Builder()
                 .setRecycler(chat)
                 .setReciverItem(R.layout.item_message_received)
                 .setSenderItem(R.layout.item_message_sent)
+                // set databse refrence
+                // set user id
+                //
                 .build();
-
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
