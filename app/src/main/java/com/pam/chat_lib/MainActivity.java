@@ -25,13 +25,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         chat = findViewById(R.id.listMessages);
         sendBtn = findViewById(R.id.sendMessageButton);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
 
         chatManager = ChatManager.Builder()
                 .setRecycler(chat)
                 .setReciverItem(R.layout.item_message_received)
                 .setSenderItem(R.layout.item_message_sent)
+                .setDataReference(database)
                 // set databse refrence
                 // set user id
                 //
@@ -39,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MessageModel mm = new MessageModel();
-                mm.setChat_id("dsdfsdf");
-                chatManager.sendMessage(mm);
+                //MessageModel mm = new MessageModel();
+               // mm.setChat_id("dsdfsdf");
+               // chatManager.sendMessage(mm);
+                chatManager.addRoom();
             }
         });
 

@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChatManager {
     private RecyclerView recycler;
@@ -31,12 +32,11 @@ public class ChatManager {
     private String currentUser;
     private String child;
     private String childAdd;
+    DatabaseReference databaseReference;
 
 
 
-    private List<MessageModel> messageList;
-
-    ChatManager(RecyclerView recycler, int reciverId, int senderId, int textId, int imageId, int progressId, int textTimeId,List<MessageModel> messageList,String currentUser) {
+    ChatManager(RecyclerView recycler, int reciverId, int senderId, int textId, int imageId, int progressId, int textTimeId,String currentUser,DatabaseReference reference) {
         this.recycler = recycler;
         this.reciverId = reciverId;
         this.senderId = senderId;
@@ -44,8 +44,8 @@ public class ChatManager {
         this.imageId = imageId;
         this.progressId = progressId;
         this.textTimeId = textTimeId;
-        this.messageList = messageList;
         this.currentUser=currentUser;
+        this.databaseReference=reference;
 
     }
 
@@ -54,7 +54,7 @@ public class ChatManager {
     }
 
     void init(){
-        ChatAdapterV2 adapter = new ChatAdapterV2(recycler.getContext(),currentUser,senderId,reciverId);
+        ChatAdapterV2 adapter = new ChatAdapterV2(recycler.getContext(),currentUser,senderId);
         recycler.setLayoutManager(new LinearLayoutManager(recycler.getContext()));
         recycler.setAdapter(adapter);
 
@@ -70,9 +70,14 @@ public class ChatManager {
     public void sendMessage(MessageModel messageModel){
 
     }
+
     public void addRoom(){
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference ref=database.getReference().child("chat");
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("name","kecheama");
+        DatabaseReference ref =databaseReference.child("chat").push();
+        String a = ref.getKey();
+        ref.setValue(childUpdates);
+
     }
 
 }

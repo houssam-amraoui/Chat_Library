@@ -2,6 +2,8 @@ package com.pam.chatlib;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.pam.chatlib.model.MessageModel;
 
 import java.util.List;
@@ -16,9 +18,7 @@ public class Builder{
     private int imageId;
     private int progressId;
     private int textTimeId;
-    
-    private List<MessageModel> messageList;
-    
+    DatabaseReference databaseReference;
     private String CurrentUserId;
 
     public Builder setRecycler(RecyclerView recycler) {
@@ -43,17 +43,18 @@ public class Builder{
         return this;
     }
     
-    public Builder setDataList(List<MessageModel> messageList) {
-        this.messageList = messageList;
+
+    public Builder setDataReference(DatabaseReference dataReference) {
+
         return this;
     }
-
     public ChatManager build() {
         // TODO: 04/04/2021 add throw exption 
 
-        ChatManager chatManager = new ChatManager(recycler,layoutReciverId,layoutSenderId,textId,imageId,progressId,textTimeId,messageList,CurrentUserId);
+        ChatManager chatManager = new ChatManager(recycler,layoutReciverId,layoutSenderId,textId,imageId,progressId,textTimeId,CurrentUserId,databaseReference);
         chatManager.init();
         return chatManager;
     }
+
 
 }

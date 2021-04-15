@@ -32,7 +32,7 @@ public class ChatAdapterV2 extends RecyclerView.Adapter<ChatAdapterV2.BodyHolder
     int mesageText;
     List<MessageModel> messageModelList = new ArrayList<>();
 
-    public ChatAdapterV2(Context c,String currentUser,int sendId,int receivedId) {
+    public ChatAdapterV2(Context c,String currentUser,int sendId) {
         this.context = c;
         this.currentUser=currentUser;
         this.sendId=sendId;
