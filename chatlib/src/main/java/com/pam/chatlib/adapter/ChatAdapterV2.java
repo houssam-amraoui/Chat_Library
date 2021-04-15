@@ -66,10 +66,10 @@ public class ChatAdapterV2 extends RecyclerView.Adapter<ChatAdapterV2.BodyHolder
         int viewType=getItemViewType(position);
         switch (viewType){
             case CHAT_IN:
-                holder.messageText.setText(mesageText);
+                holder.messageText.setText(messageModel.getText());
                 break;
             case CHAT_OUT:
-                holder.messageText.setText(mesageText);
+                holder.messageText.setText(messageModel.getText());
         }
     }
 
