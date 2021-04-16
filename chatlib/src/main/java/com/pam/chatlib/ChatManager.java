@@ -74,9 +74,10 @@ public class ChatManager {
     public void addRoom(){
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("name","kecheama");
-        DatabaseReference ref =databaseReference.child("chat").push();
-        String a = ref.getKey();
-        ref.setValue(childUpdates);
+        DatabaseReference ref2=databaseReference.child("chat").push().push();
+        /*DatabaseReference ref =databaseReference.child("chat").push();
+        String a = ref.getKey();*/
+        ref2.setValue(childUpdates);
 
     }
 

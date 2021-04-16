@@ -56,5 +56,7 @@ public class Builder{
         return chatManager;
     }
 
-
+    /*public Builder setUserId(int userId) {
+        return this;
+    }*/
 }

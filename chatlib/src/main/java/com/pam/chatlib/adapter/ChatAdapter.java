@@ -16,7 +16,7 @@ import com.pam.chatlib.R;
 import com.pam.chatlib.model.MessageModel;
 
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
+/*public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     // A menu item view type.
     private static final int CHAT_IN = 0;
 
@@ -296,4 +296,3 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
  */
-}

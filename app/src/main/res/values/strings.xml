@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Datoo</string>
+    <string name="app_name">Chat_Lib</string>
     <string name="top_sheet_behavior" translatable="false">com.angopapo.datoo.modules.topsheet.TopSheetBehavior</string>
     <string name="center_sheet_behavior" translatable="false">com.angopapo.datoo.modules.centersheet.CenterSheetBehavior</string>
 

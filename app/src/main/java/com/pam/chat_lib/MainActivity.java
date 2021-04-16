@@ -17,7 +17,7 @@ import com.pam.chatlib.model.MessageModel;
 public class MainActivity extends AppCompatActivity {
     RecyclerView chat;
     ImageButton sendBtn;
-
+    int user;
     ChatManager chatManager;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 .setReciverItem(R.layout.item_message_received)
                 .setSenderItem(R.layout.item_message_sent)
                 .setDataReference(database)
-                // set databse refrence
-                // set user id
+                 //.setUserId(user);
                 //
                 .build();
         sendBtn.setOnClickListener(new View.OnClickListener() {
