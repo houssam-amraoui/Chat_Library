@@ -32,7 +32,7 @@ public class ChatManager {
     private String currentUser;
     private String child;
     private String childAdd;
-    DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
 
 
 

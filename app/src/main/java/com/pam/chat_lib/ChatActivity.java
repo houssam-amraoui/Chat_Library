@@ -14,10 +14,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.pam.chatlib.ChatManager;
 import com.pam.chatlib.model.MessageModel;
 //nihahahahahahahahahahahahahah
-public class MainActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
     RecyclerView chat;
     ImageButton sendBtn;
-    int user;
+    //int user;
     ChatManager chatManager;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

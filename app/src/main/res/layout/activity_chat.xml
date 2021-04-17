@@ -1,12 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:emojicon="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_messages"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    emojicon:context=".MainActivity">
+    tools:context=".ChatActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -245,8 +246,8 @@
                     android:layout_marginRight="@dimen/size_1"
                     android:enabled="false"
                     android:gravity="center"
-                    android:tint="@color/black"
-                    app:srcCompat="@drawable/ic_chat_control_action_multimedia" />
+                    app:srcCompat="@drawable/ic_chat_control_action_multimedia"
+                    app:tint="@color/black" />
 
                 <LinearLayout
                     android:id="@+id/send_message_panel"
