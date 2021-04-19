@@ -18,7 +18,7 @@ public class Builder{
     private int imageId;
     private int progressId;
     private int textTimeId;
-    DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
     private String CurrentUserId;
 
     public Builder setRecycler(RecyclerView recycler) {
@@ -45,14 +45,14 @@ public class Builder{
     
 
     public Builder setDataReference(DatabaseReference dataReference) {
-
+            this.databaseReference=dataReference;
         return this;
     }
     public ChatManager build() {
         // TODO: 04/04/2021 add throw exption 
 
         ChatManager chatManager = new ChatManager(recycler,layoutReciverId,layoutSenderId,textId,imageId,progressId,textTimeId,CurrentUserId,databaseReference);
-        chatManager.init();
+        //chatManager.init();
         return chatManager;
     }
 
