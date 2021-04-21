@@ -3,14 +3,12 @@ package com.pam.chatlib;
 
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pam.chatlib.adapter.ChatAdapterV2;
 import com.pam.chatlib.model.MessageModel;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,7 +20,6 @@ public class ChatManager {
     private RecyclerView recycler;
     private int reciverId;
     private int senderId;
-
     private int textId;
     private int imageId;
     private int progressId;
@@ -68,8 +65,8 @@ public class ChatManager {
         childUpdates.put("id_user", "02");
         childUpdates.put("message", "AFin CV");
         childUpdates.put("time", time);
-        DatabaseReference ref = databaseReference.child("chat").push();
-        DatabaseReference ref2 = ref.push();
+         DatabaseReference ref = databaseReference.child("chat").push();
+         DatabaseReference ref2 = ref.push();
         roomRefKey = ref.getKey();
         messageRefKey = ref2.getKey();
         ref2.setValue(childUpdates);
@@ -80,8 +77,26 @@ public class ChatManager {
         if (databaseReference.child("chat").getKey() != roomRefKey) {
             sendMessageFirstTime();
         } else {
-
+            DatabaseReference ref = databaseReference.child("chat").child(roomRefKey).push();
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
+            String time = simpleDateFormat.format(c);
+            Map<String, Object> childUpdates = new HashMap<>();
+            childUpdates.put("id_user", "01");
+            childUpdates.put("message", "Hmd onta");
+            childUpdates.put("time", time);
+            ref.setValue(childUpdates);
         }
-
+    }
+    public void testMessage(){
+        DatabaseReference databaseReference1 = databaseReference.child("chat").child(roomRefKey).push();
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
+        String time = simpleDateFormat.format(c);
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("id_user", "01");
+        childUpdates.put("message", "Hmd onta");
+        childUpdates.put("time", time);
+        databaseReference1.setValue(childUpdates);
     }
 }

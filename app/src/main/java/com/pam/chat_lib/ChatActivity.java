@@ -41,10 +41,10 @@ public class ChatActivity extends AppCompatActivity {
 
 
         chatManager = ChatManager.Builder()
-                .setRecycler(chat)
-                .setReciverItem(R.layout.item_message_received)
-                .setSenderItem(R.layout.item_message_sent)
-                .setDataReference(database)
+                //.setRecycler(chat)
+                //.setReciverItem(R.layout.item_message_received)
+                //.setSenderItem(R.layout.item_message_sent)
+               // .setDataReference(database)
                  //.setUserId(user);
                 //
                 .build();
@@ -53,7 +53,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //MessageModel mm = new MessageModel();
                // mm.setChat_id("dsdfsdf");
-               chatManager.sendMessage();
+               //chatManager.sendMessage();
+                chatManager.testMessage();
 
 
             }
