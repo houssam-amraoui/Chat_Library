@@ -54,7 +54,7 @@ public class ChatActivity extends AppCompatActivity {
                 //MessageModel mm = new MessageModel();
                // mm.setChat_id("dsdfsdf");
                //chatManager.sendMessage();
-                chatManager.testMessage();
+               chatManager.testMessage();
 
 
             }

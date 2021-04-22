@@ -1,8 +1,9 @@
 package com.pam.chatlib;
 
 
+import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Toast;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class ChatManager {
     private RecyclerView recycler;
@@ -26,8 +28,10 @@ public class ChatManager {
     private int textTimeId;
     private String currentUser;
     private DatabaseReference databaseReference;
-    private String roomRefKey;
-    private String messageRefKey;
+    private  String roomRefKey,messageRefKey;
+   private Random r = new Random();
+    private Long l=r.nextLong();
+    private String key=l+"";
 
 
     ChatManager(RecyclerView recycler, int reciverId, int senderId, int textId, int imageId, int progressId, int textTimeId, String currentUser, DatabaseReference reference) {
@@ -54,10 +58,13 @@ public class ChatManager {
 
     }
 
+
+
     void updateChanges(MessageModel messageModel) {
     }
 
     void sendMessageFirstTime() {
+        DatabaseReference ref;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
         String time = simpleDateFormat.format(c);
@@ -65,19 +72,19 @@ public class ChatManager {
         childUpdates.put("id_user", "02");
         childUpdates.put("message", "AFin CV");
         childUpdates.put("time", time);
-         DatabaseReference ref = databaseReference.child("chat").push();
-         DatabaseReference ref2 = ref.push();
-        roomRefKey = ref.getKey();
-        messageRefKey = ref2.getKey();
-        ref2.setValue(childUpdates);
-        Log.e("Items", "REF 1 =" + roomRefKey + " and REF 2 =" + messageRefKey);
+        databaseReference=FirebaseDatabase.getInstance().getReference();
+       ref=databaseReference.child("chat").child(key).push();
+      ref.setValue(childUpdates);
+        //Log.e("Items", "REF 1 =" + roomRefKey + " and REF 2 =" + messageRefKey);
     }
 
     public void sendMessage() {
-        if (databaseReference.child("chat").getKey() != roomRefKey) {
+
+        //if () {
             sendMessageFirstTime();
-        } else {
-            DatabaseReference ref = databaseReference.child("chat").child(roomRefKey).push();
+        }
+        /*else {
+            DatabaseReference reference = databaseReference.child("chat").child(key).push();
             Date c = Calendar.getInstance().getTime();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
             String time = simpleDateFormat.format(c);
@@ -85,11 +92,12 @@ public class ChatManager {
             childUpdates.put("id_user", "01");
             childUpdates.put("message", "Hmd onta");
             childUpdates.put("time", time);
-            ref.setValue(childUpdates);
+            reference.setValue(childUpdates);
         }
-    }
+    }*/
+
     public void testMessage(){
-        DatabaseReference databaseReference1 = databaseReference.child("chat").child(roomRefKey).push();
+        DatabaseReference databaseReference1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
         String time = simpleDateFormat.format(c);
@@ -97,6 +105,8 @@ public class ChatManager {
         childUpdates.put("id_user", "01");
         childUpdates.put("message", "Hmd onta");
         childUpdates.put("time", time);
+        databaseReference=FirebaseDatabase.getInstance().getReference();
+         databaseReference1 = databaseReference.child("chat").child(key).push();
         databaseReference1.setValue(childUpdates);
     }
 }
