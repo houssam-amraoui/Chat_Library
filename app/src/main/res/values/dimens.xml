@@ -49,7 +49,7 @@
     <dimen name="textSizeBody2">17.0sp</dimen>
     <dimen name="textSizeBody3">16.0sp</dimen>
     <dimen name="textSizeBody4">14.0sp</dimen>
-    <item type="dimen" name="mediumTextSize">@dimen/textSizeBody3</item>
+    <item name="mediumTextSize" type="dimen">@dimen/textSizeBody3</item>
     <dimen name="textSizeHeader3">18.0sp</dimen>
     <dimen name="stroke_0_25">1.0dip</dimen>
     <dimen name="sephiroth_range_progress_bar_height_material">2dp</dimen>
@@ -77,7 +77,7 @@
 
     <dimen name="size_0_5">4.0dip</dimen>
     <dimen name="size_0_5_negative">-4.0dip</dimen>
-    <item type="dimen" name="popularity_day_radius">@dimen/size_2</item>
+    <item name="popularity_day_radius" type="dimen">@dimen/size_2</item>
 
     <dimen name="size_0_75">6dp</dimen>
     <dimen name="size_0_75_negative">-6dp</dimen>
@@ -193,6 +193,7 @@
     <dimen name="livestream_token_corner_radius">6dp</dimen>
     <dimen name="livestream_token_min_progress">1dp</dimen>
     <dimen name="call_connection_padding">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>

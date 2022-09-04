@@ -312,7 +312,7 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:visibility="gone"
-        layout="@layout/fragment_gallery"/>
+        layout="@layout/activity_list"/>
 
     <RelativeLayout
         android:id="@+id/prograss_layout"

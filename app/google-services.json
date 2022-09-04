@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:708127062188:android:84ab8502b1576bfd8b4709",
+        "mobilesdk_app_id": "1:708127062188:android:575cd001abc2b7768b4709",
         "android_client_info": {
-          "package_name": "com.dinosoftlabs.binder"
+          "package_name": "com.pam.chat_lib"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "708127062188-5uuscia78oi42gupdb827a5qlf52k6k9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dinosoftlabs.binder",
-            "certificate_hash": "9ca678bbdee24ec2965586e327c903e42b0fbb79"
-          }
-        },
         {
           "client_id": "708127062188-aioj6l3nrambfn28eic5mran3inngqm6.apps.googleusercontent.com",
           "client_type": 3
@@ -45,9 +37,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:708127062188:android:575cd001abc2b7768b4709",
+        "mobilesdk_app_id": "1:708127062188:android:b2785ba7d24d2e3a8b4709",
         "android_client_info": {
-          "package_name": "com.pam.chat_lib"
+          "package_name": "org.jdc.myapplication"
         }
       },
       "oauth_client": [

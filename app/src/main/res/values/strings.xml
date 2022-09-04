@@ -281,7 +281,7 @@
     <string name="get_datoo_premium_explain">Increase your popularity and access special features other guys simply don\'t have.</string>
     <string name="continue_">Continue</string>
     <string name="you_need">You need</string>
-   <!-- <string name="credits_200">200 credits</string>
+    <!-- <string name="credits_200">200 credits</string>
     <string name="credits_50">50 credits</string>
     <string name="credits_100">100 credits</string>-->
     <string name="enyoy_service">to enjoy this service</string>
@@ -363,6 +363,7 @@
     <string name="profile_settings_password">Get Password</string>
     <string name="settings_delete_account">Delete account</string>
     <string name="email_empty">Your email!</string>
+    <string name="list_empty">Your list is empty</string>
     <string name="profile_account_message">Make sure you can remember your password, as you\'ll need it to sign back in.</string>
     <string name="profile_account_signout">Sign out</string>
     <string name="profile_account_signout_success">You have successfully signed out</string>
@@ -670,4 +671,12 @@
     <string name="at_last_2_name">First and last name ?</string>
     <string name="live_stream_share_sucess_">Thanks, we hope to see you again</string>
     <string name="live_stream_share_with_your_friends_">Finish</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
 </resources>

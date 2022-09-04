@@ -1,29 +1,16 @@
 package com.pam.chatlib.adapter;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+/*
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
-import com.pam.chatlib.R;
-import com.pam.chatlib.model.MessageModel;
-
-
-/*public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     // A menu item view type.
     private static final int CHAT_IN = 0;
 
     // The Native Express ad view type.
     private static final int CHAT_OUT = 1;
 
-    private List<MessageModel> mMessages;
+    private  List<MessageModel> mMessages;
     private Activity mActivity;
 
     public ChatAdapter(Activity activity, List<MessageModel> messages) {
@@ -294,5 +281,6 @@ import com.pam.chatlib.model.MessageModel;
             mImageMsg = itemView.findViewById(R.id.chatMessage_photo_image);
         }
     }
+}
 
  */

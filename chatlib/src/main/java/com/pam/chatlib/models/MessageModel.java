@@ -1,7 +1,5 @@
-package com.pam.chatlib.model;
+package com.pam.chatlib.models;
 
-
-import static java.lang.Boolean.getBoolean;
 
 public class MessageModel {
 
@@ -96,4 +94,19 @@ public class MessageModel {
         this.timestamp = timestamp;
     }
 
+    @Override
+    public String toString() {
+        return "MessageModel{" +
+                "receiver_id='" + receiver_id + '\'' +
+                ", sender_id='" + sender_id + '\'' +
+                ", chat_id='" + chat_id + '\'' +
+                ", text='" + text + '\'' +
+                ", type='" + type + '\'' +
+                ", pic_url='" + pic_url + '\'' +
+                ", status='" + status + '\'' +
+                ", time='" + time + '\'' +
+                ", sender_name='" + sender_name + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/activity_chat.xml" value="0.2484375" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/activity_connections.xml" value="0.2484375" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/activity_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/activity_main.xml" value="0.29739583333333336" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/activity_main2.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/activity_start.xml" value="0.234375" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/content_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/fragment_first.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/fragment_gallery.xml" value="0.2484375" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/fragment_second.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/item_message_received.xml" value="0.16" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/item_message_sent.xml" value="0.31476449275362317" />
+        <entry key="..\:/Users/houssam/Desktop/android feltered/my library/Chat_Library/app/src/main/res/layout/list_item_conversation.xml" value="0.5" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
