@@ -13,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pam.chatlib.helpers.Tools;
+import com.pam.chatlib.interfaces.AdapterClickListener;
 import com.pam.chatlib.models.Connection;
 import com.pam.chatlib.models.ItemConversationIds;
+import com.pam.chatlib.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +26,14 @@ public class ConnectionsAdapter extends RecyclerView.Adapter<ConnectionsAdapter.
     Context context;
     String currentUserToken;
     ItemConversationIds itemConversationIds;
+    AdapterClickListener adapterClickListener;
 
 
-    public ConnectionsAdapter(Context context, String currentUserToken, ItemConversationIds itemConversationIds) {
+    public ConnectionsAdapter(Context context, String currentUserToken, ItemConversationIds itemConversationIds, AdapterClickListener adapterClickListener) {
         this.context = context;
         this.currentUserToken = currentUserToken;
         this.itemConversationIds = itemConversationIds;
+        this.adapterClickListener = adapterClickListener;
     }
 
     @Override
@@ -54,6 +58,8 @@ public class ConnectionsAdapter extends RecyclerView.Adapter<ConnectionsAdapter.
         viewHolder.fullName.setText(connection.getContact_name());
 
         viewHolder.iconBadge.setVisibility(View.GONE);
+
+        viewHolder.bind(position,connection,adapterClickListener);
 
 
         //   viewHolder.description.setText(connection.getLastMessage());
@@ -354,5 +360,22 @@ public class ConnectionsAdapter extends RecyclerView.Adapter<ConnectionsAdapter.
             description = v.findViewById(itemConversationIds.getDescriptionId());
             favorite = v.findViewById(itemConversationIds.getFavoriteId());
             userStatus = v.findViewById(itemConversationIds.getUserStatusId());
+        }
+        public void bind(int pos, Connection connection, AdapterClickListener listener) {
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(pos,connection,v);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return listener.onLongItemClick(pos,connection,v);
+                }
+
+            });
+
+
         }
     }}

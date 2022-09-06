@@ -23,7 +23,7 @@ public class StartActivity extends AppCompatActivity {
 
         start.setOnClickListener(view -> {
                     if(!idInput.getText().equals("")){
-                    Intent usersActivity = new Intent(this,UsersActivity.class);
+                    Intent usersActivity = new Intent(this,ConnectionsActivity.class);
                     usersActivity.putExtra("token",idInput.getText().toString());
                     startActivity(usersActivity);
                         return;

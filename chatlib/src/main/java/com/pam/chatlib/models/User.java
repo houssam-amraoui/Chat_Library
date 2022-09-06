@@ -1,8 +1,20 @@
 package com.pam.chatlib.models;
 
-public class User {
+
+import java.io.Serializable;
+
+public class User implements Serializable {
     String name;
     String pic;
+    String Token;
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
+    }
 
     public String getName() {
         return name;

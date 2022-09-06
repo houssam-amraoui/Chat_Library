@@ -8,7 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pam.chatlib.ChatManager;
+import com.pam.chatlib.models.Connection;
+import com.pam.chatlib.models.User;
 import com.vanniktech.emoji.EmojiEditText;
+
+import java.io.Serializable;
 
 public class ChatActivity extends AppCompatActivity {
     RecyclerView chatRecycler;
@@ -17,7 +21,8 @@ public class ChatActivity extends AppCompatActivity {
     ChatManager chatManager;
     EmojiEditText message;
 
-    MyApp myApp = ((MyApp) this.getApplication());
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,11 +32,21 @@ public class ChatActivity extends AppCompatActivity {
         sendBtn = findViewById(R.id.sendMessageButton);
         message = findViewById(R.id.MessageWrapper);
 
+        Bundle bundle =  getIntent().getExtras();
 
-        chatManager = myApp.getChatManager();
+        chatManager = ((MyApp) this.getApplication()).getChatManager();
         chatManager.setChatRecycler(chatRecycler);
+        Serializable item =bundle.getSerializable("item");
 
-        chatManager.fitchMessages();
+        if (item instanceof Connection) {
+            Connection connection = (Connection) item;
+            chatManager.fitchMessages(connection.getRoom_id());
+
+        }
+
+
+
+
 
 
 
@@ -43,7 +58,10 @@ public class ChatActivity extends AppCompatActivity {
 
           //  MessageModel mm = new MessageModel();
          //   mm.setChat_id("dsdfsdf");
-            chatManager.sendMessage();
+            chatManager.sendMessage(message.getText().toString(),item);
+
+
+
 
             //chatManager.testMessage();
 

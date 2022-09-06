@@ -3,18 +3,21 @@ package com.pam.chat_lib;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.pam.chatlib.ChatManager;
 import com.pam.chatlib.interfaces.AdapterClickListener;
+import com.pam.chatlib.models.Connection;
+import com.pam.chatlib.models.User;
+
+import java.io.Serializable;
 
 public class UsersActivity extends AppCompatActivity {
 
-    private String token;
     ChatManager chatManager;
-
 
     RecyclerView usersRecycler;
 
@@ -25,14 +28,16 @@ public class UsersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         usersRecycler = findViewById(R.id.recyclerList);
 
-        token = getIntent().getExtras().getString("token");
         chatManager.setUserRecycler(usersRecycler);
-        chatManager.setCurrentUserToken(token);
 
         chatManager.fitchUsers(new AdapterClickListener() {
             @Override
             public void onItemClick(int pos, Object item, View view) {
-                Toast.makeText(UsersActivity.this, pos +" Click", Toast.LENGTH_SHORT).show();
+
+
+                Intent usersActivity = new Intent(UsersActivity.this,ChatActivity.class);
+                usersActivity.putExtra("item",(Serializable)item);
+                startActivity(usersActivity);
             }
 
             @Override

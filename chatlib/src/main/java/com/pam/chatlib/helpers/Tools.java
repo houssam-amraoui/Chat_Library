@@ -8,6 +8,11 @@ import androidx.core.content.ContextCompat;
 
 import com.pam.chatlib.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class Tools {
     public static void getAvatars(String image, ImageView imageView){
 
@@ -32,5 +37,11 @@ public class Tools {
                     .into(imageView);
 
         }*/
+    }
+
+    public static String getTimeStringFormat(){
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
+        return simpleDateFormat.format(c);
     }
 }

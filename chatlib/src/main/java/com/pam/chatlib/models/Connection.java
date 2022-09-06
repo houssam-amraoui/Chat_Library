@@ -1,9 +1,14 @@
 package com.pam.chatlib.models;
 
-public class Connection {
+import java.io.Serializable;
+
+public class Connection implements Serializable {
     String contact_name;
     String pic;
     String room_id;
+
+    public Connection() {
+    }
 
     public Connection(String contact_name, String pic, String room_id) {
         this.contact_name = contact_name;

@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.pam.chatlib.adapter.ChatAdapter1;
 import com.pam.chatlib.adapter.ConnectionsAdapter;
 import com.pam.chatlib.adapter.UserAdapter;
+import com.pam.chatlib.helpers.Tools;
 import com.pam.chatlib.interfaces.AdapterClickListener;
 import com.pam.chatlib.models.Connection;
 import com.pam.chatlib.models.ItemConversationIds;
@@ -22,7 +23,9 @@ import com.pam.chatlib.models.ItemUserIds;
 import com.pam.chatlib.models.Message;
 import com.pam.chatlib.models.MessageModel;
 import com.pam.chatlib.models.User;
+import com.vanniktech.emoji.EmojiEditText;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,9 +44,11 @@ public class ChatManager {
     ItemMessageIds itemMessageIds;
 
     private RecyclerView userRecycler;
-    private RecyclerView ConnectionRecycler;
+    private RecyclerView connectionRecycler;
     private RecyclerView chatRecycler;
 
+    User me;
+    String room_id;
 
     public ChatManager(String currentUserToken, DatabaseReference databaseReference, ItemUserIds itemUserIds, ItemConversationIds itemConversationIds, ItemMessageIds itemMessageIds) {
         this.currentUserToken = currentUserToken;
@@ -51,6 +56,8 @@ public class ChatManager {
         this.itemUserIds = itemUserIds;
         this.itemConversationIds = itemConversationIds;
         this.itemMessageIds = itemMessageIds;
+
+
     }
 
 
@@ -60,20 +67,30 @@ public class ChatManager {
 
     public void setCurrentUserToken(String currentUserToken) {
         this.currentUserToken = currentUserToken;
+
+        databaseReference.child("user").child(currentUserToken).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                me = dataSnapshot.getValue(User.class);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
     }
 
     public void setUserRecycler(RecyclerView userRecycler) {
         this.userRecycler = userRecycler;
     }
     public void setConnectionRecycler(RecyclerView connectionRecycler) {
-        this.ConnectionRecycler = connectionRecycler;
+        this.connectionRecycler = connectionRecycler;
     }
     public void setChatRecycler(RecyclerView chatRecycler) {
         this.chatRecycler = chatRecycler;
     }
 
-    public void fitchMessages() {
-        if (chatRecycler == null&&currentUserToken == null) {
+    public void fitchMessages(String room_id) {
+        this.room_id = room_id;
+        if (chatRecycler == null || currentUserToken == null) {
             // TODO: 9/3/2022 create on successes interface
             return;
         }
@@ -83,7 +100,7 @@ public class ChatManager {
         chatRecycler.setAdapter(adapter);
 
 
-        databaseReference.child("chat/0").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("chat").child(room_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         List<Message> messages = new ArrayList<>();
@@ -95,6 +112,7 @@ public class ChatManager {
                            messages.add(message);
                         }
                         adapter.addItems(messages);
+                        chatRecycler.scrollToPosition(messages.size()-1);
                     }
 
                     @Override
@@ -105,7 +123,7 @@ public class ChatManager {
                 });
     }
     public void fitchUsers(AdapterClickListener adapterClickListener) {
-        if (userRecycler == null && currentUserToken == null) {
+        if (userRecycler == null || currentUserToken == null) {
             // TODO: 9/3/2022 create on successes interface
             return;
         }
@@ -139,15 +157,15 @@ public class ChatManager {
         });
 
     }
-    public void fitchConnections() {
-        if (ConnectionRecycler == null && currentUserToken == null) {
+    public void fitchConnections(AdapterClickListener adapterClickListener) {
+        if (connectionRecycler == null || currentUserToken == null) {
             // TODO: 9/3/2022 create on successes interface
             return;
         }
 
-        ConnectionsAdapter adapter = new ConnectionsAdapter(ConnectionRecycler.getContext(), currentUserToken, itemConversationIds);
-        ConnectionRecycler.setLayoutManager(new LinearLayoutManager(ConnectionRecycler.getContext()));
-        ConnectionRecycler.setAdapter(adapter);
+        ConnectionsAdapter adapter = new ConnectionsAdapter(connectionRecycler.getContext(), currentUserToken, itemConversationIds,adapterClickListener);
+        connectionRecycler.setLayoutManager(new LinearLayoutManager(connectionRecycler.getContext()));
+        connectionRecycler.setAdapter(adapter);
 
 
         databaseReference.child("contact").child(currentUserToken).addValueEventListener(new ValueEventListener() {
@@ -157,7 +175,7 @@ public class ChatManager {
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Connection connection = snapshot.getValue(Connection.class);
-                    Toast.makeText(userRecycler.getContext(), snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(connectionRecycler.getContext(), snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
 
                     connections.add(connection);
                 }
@@ -166,22 +184,17 @@ public class ChatManager {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(userRecycler.getContext(), databaseError.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(connectionRecycler.getContext(), databaseError.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    public void updateChanges(MessageModel messageModel) {
-    }
+
     private void sendMessageFirstTime() {
 
         // create contact to receiver user and create new chat room
         DatabaseReference ref,ref2;
-
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
-        String time = simpleDateFormat.format(c);
 
         ref=databaseReference.child("chat").push();
 
@@ -195,32 +208,34 @@ public class ChatManager {
         childUpdates.put("id_user", "02");
         childUpdates.put("message", "AFin CV");
         childUpdates.put("message_id",pushIdMessage);
-        childUpdates.put("time", time);
+        childUpdates.put("time", Tools.getTimeStringFormat());
 
       ref2.setValue(childUpdates);
         //Log.e("Items", "REF 1 =" + roomRefKey + " and REF 2 =" + messageRefKey);
     }
-    public void sendMessage() {
+    public void sendMessage(String message, Serializable item) {
 
-        if (false) {
-            sendMessageFirstTime();
+
+        if (item instanceof User || room_id == null) {
+            DatabaseReference reference = databaseReference.child("chat").push();
+            room_id = reference.getKey();
+
+            User user = (User) item;
+            createRoom(user);
+            fitchMessages(room_id);
         }
-        else {
-            DatabaseReference reference = databaseReference.child("chat").child("0").push();
 
+            DatabaseReference reference = databaseReference.child("chat").child(room_id).push();
            // String pushIdMessage = reference.getKey();
-         //   Log.d("TAG", "sendMessage: "+pushIdMessage);
-
-            Date c = Calendar.getInstance().getTime();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
-            String time = simpleDateFormat.format(c);
-
             Map<String, Object> childUpdates = new HashMap<>();
-            childUpdates.put("id_user", "2");
-            childUpdates.put("message", "ee");
-            childUpdates.put("time", time);
+            childUpdates.put("id_user", currentUserToken);
+            childUpdates.put("message", message);
+            childUpdates.put("time", Tools.getTimeStringFormat());
             reference.setValue(childUpdates);
-        }
+
+
+
+
     }
     public  void testMessage(){
         /*DatabaseReference databaseReference1;
@@ -237,5 +252,27 @@ public class ChatManager {
     }
 
 
+    public void createRoom(User user) {
+        // TODO: 9/6/2022  set room id
 
+        DatabaseReference reference1 = databaseReference.child("contact").child(currentUserToken).push();
+
+        DatabaseReference reference2 = databaseReference.child("contact").child(user.getToken()).push();
+
+        Map<String, Object> room1 = new HashMap<>();
+        room1.put("contact_name", user.getName());
+        room1.put("pic", user.getPic()); // TODO: 9/6/2022 chang pic with user token to get dynamic pic and other mutable field
+        room1.put("room_id", room_id);
+
+        reference1.setValue(room1);
+
+        Map<String, Object> room2 = new HashMap<>();
+        room2.put("contact_name", me.getName());
+        room2.put("pic", me.getPic());
+        room2.put("room_id",room_id);
+
+        reference2.setValue(room2);
+
+
+    }
 }

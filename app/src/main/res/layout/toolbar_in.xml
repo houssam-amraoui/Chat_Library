@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:emojicon="http://schemas.android.com/tools"
+
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:minHeight="?attr/actionBarSize"
+    android:background="@color/white"
+    app:navigationIcon="@null"
+    app:contentInsetStart="0dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:minHeight="?attr/actionBarSize">
+
+    <LinearLayout
+        android:id="@+id/arrow_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon_undo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_navigation_bar_back" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:minHeight="?attr/actionBarSize"
+        android:gravity="center">
+
+        <!-- com.angopapo.datoo.modules.circularimageview.CircleImageView-->
+
+        <ImageView
+            android:id="@+id/toolbar_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_circle_image_holder" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toolbarLinear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:minHeight="?attr/actionBarSize"
+        android:orientation="vertical">
+
+        <com.vanniktech.emoji.EmojiTextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="start|center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="6dp"
+            android:paddingStart="6dp"
+            android:paddingRight="6dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            emojicon:text="Maravilho Singa" />
+
+        <TextView
+            android:id="@+id/toolbar_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:paddingLeft="6dp"
+            android:paddingStart="6dp"
+            android:paddingRight="6dp"
+            android:gravity="start|center"
+            android:textColor="@color/gray_dark"
+            android:textSize="14sp"
+            android:maxLines="1"
+            emojicon:text="online 2 days ago"
+            android:fontFamily="sans-serif"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:minHeight="?attr/actionBarSize"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/favorite_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            app:srcCompat="@drawable/ic_profile_favorite" />
+
+        <ImageView
+            android:id="@+id/video_call_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            app:srcCompat="@drawable/ic_navigation_bar_video" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</androidx.appcompat.widget.Toolbar>

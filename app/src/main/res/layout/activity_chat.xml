@@ -185,7 +185,7 @@
                     android:gravity="bottom"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="30dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/textView8"
@@ -202,15 +202,15 @@
                         android:id="@+id/imageView5"
                         android:layout_width="190dp"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView8"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="14dp"
+                        android:drawablePadding="2dp"
                         android:gravity="center"
+                        android:text="@string/say_hello"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_below="@+id/textView8"
-                        android:text="@string/say_hello"
                         android:tint="@color/colorPrimary"
-                        android:drawablePadding="2dp"
                         app:drawableLeftCompat="@drawable/ic_chat_smile" />
 
 

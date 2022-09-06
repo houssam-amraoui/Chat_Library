@@ -1,6 +1,6 @@
 package com.pam.chatlib.models;
 
-public class Message {
+public class Message  {
 	 String id_user;
 	 String message;
 	 String time;

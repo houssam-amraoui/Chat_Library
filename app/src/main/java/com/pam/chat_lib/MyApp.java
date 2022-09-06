@@ -10,6 +10,11 @@ import com.pam.chatlib.models.ItemUserIds;
 import com.vanniktech.emoji.EmojiManager;
 import com.vanniktech.emoji.twitter.TwitterEmojiProvider;
 
+// add new user to contact by sanding message first time
+// dent add new user to contact if is it already added just show chatActivity
+// add more details to models object like (message type room name)
+// add image and emoji and audio
+
 public class MyApp extends Application {
     private ChatManager chatManager;
 
@@ -19,7 +24,7 @@ public class MyApp extends Application {
         EmojiManager.install(new TwitterEmojiProvider());
 
         chatManager = ChatManager.Builder()
-                .setCurrentUserToken("1")
+               // .setCurrentUserToken("1")
                 .setDataReference(FirebaseDatabase.getInstance().getReference())
                 .setItemUserIds(new ItemUserIds())
                 .setItemConversationIds(new ItemConversationIds(R.layout.item_conversation, R.id.root,R.id.image,R.id.title,R.id.countContainer,R.id.countBadge,R.id.iconBadge,R.id.message,R.id.favourite,R.id.peopleNearby_personStatus))
