@@ -22,7 +22,7 @@ public class ChatActivity extends AppCompatActivity {
     EmojiEditText message;
 
 
-
+    Serializable item;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,37 +36,27 @@ public class ChatActivity extends AppCompatActivity {
 
         chatManager = ((MyApp) this.getApplication()).getChatManager();
         chatManager.setChatRecycler(chatRecycler);
-        Serializable item =bundle.getSerializable("item");
+
+        item = bundle.getSerializable("item");
 
         if (item instanceof Connection) {
             Connection connection = (Connection) item;
             chatManager.fitchMessages(connection.getRoom_id());
-
         }
 
-
-
-
-
-
-
         sendBtn.setOnClickListener(v -> {
+            if (item instanceof User){
+                item = chatManager.getConnectionFromUser( (User) item);
+            }
 
+            chatManager.sendMessage(message.getText().toString());
 
-
-           // Toast.makeText(this, "ss", Toast.LENGTH_SHORT).show();
-
-          //  MessageModel mm = new MessageModel();
-         //   mm.setChat_id("dsdfsdf");
-            chatManager.sendMessage(message.getText().toString(),item);
-
-
-
-
-            //chatManager.testMessage();
+            message.getText().clear();
 
 
         });
 
     }
+
+
 }

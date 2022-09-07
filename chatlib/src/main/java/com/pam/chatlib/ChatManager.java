@@ -49,6 +49,7 @@ public class ChatManager {
 
     User me;
     String room_id;
+    ValueEventListener fitchMessages;
 
     public ChatManager(String currentUserToken, DatabaseReference databaseReference, ItemUserIds itemUserIds, ItemConversationIds itemConversationIds, ItemMessageIds itemMessageIds) {
         this.currentUserToken = currentUserToken;
@@ -99,28 +100,29 @@ public class ChatManager {
         chatRecycler.setLayoutManager(new LinearLayoutManager(chatRecycler.getContext()));
         chatRecycler.setAdapter(adapter);
 
+        if (fitchMessages!=null)
+            databaseReference.child("chat").child(room_id).removeEventListener(fitchMessages);
 
-        databaseReference.child("chat").child(room_id).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        List<Message> messages = new ArrayList<>();
+        fitchMessages = databaseReference.child("chat").child(room_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Message> messages = new ArrayList<>();
 
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                           Message message = snapshot.getValue(Message.class);
-                           Toast.makeText(chatRecycler.getContext(), snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Message message = snapshot.getValue(Message.class);
 
-                           messages.add(message);
-                        }
-                        adapter.addItems(messages);
-                        chatRecycler.scrollToPosition(messages.size()-1);
-                    }
+                    messages.add(message);
+                }
+                adapter.addItems(messages);
+                chatRecycler.scrollToPosition(messages.size() - 1);
+                Toast.makeText(chatRecycler.getContext(), messages.size() + "", Toast.LENGTH_SHORT).show();
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(chatRecycler.getContext(), databaseError.toString(), Toast.LENGTH_SHORT).show();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+            }
+        });
     }
     public void fitchUsers(AdapterClickListener adapterClickListener) {
         if (userRecycler == null || currentUserToken == null) {
@@ -142,7 +144,6 @@ public class ChatManager {
                     if (snapshot.getKey().equals(currentUserToken))
                         continue;
                     User user = snapshot.getValue(User.class);
-                    Toast.makeText(userRecycler.getContext(), snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
 
                     users.add(user);
                 }
@@ -151,7 +152,6 @@ public class ChatManager {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(userRecycler.getContext(), databaseError.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -175,7 +175,6 @@ public class ChatManager {
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Connection connection = snapshot.getValue(Connection.class);
-                    Toast.makeText(connectionRecycler.getContext(), snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
 
                     connections.add(connection);
                 }
@@ -184,46 +183,22 @@ public class ChatManager {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(connectionRecycler.getContext(), databaseError.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
 
-    private void sendMessageFirstTime() {
+    public Connection getConnectionFromUser(User user) {
 
-        // create contact to receiver user and create new chat room
-        DatabaseReference ref,ref2;
-
-        ref=databaseReference.child("chat").push();
-
-        String pushIdRoom = ref.getKey();
-
-        ref2=ref.child(pushIdRoom).push();
-
-        String pushIdMessage = ref2.getKey();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("id_user", "02");
-        childUpdates.put("message", "AFin CV");
-        childUpdates.put("message_id",pushIdMessage);
-        childUpdates.put("time", Tools.getTimeStringFormat());
-
-      ref2.setValue(childUpdates);
-        //Log.e("Items", "REF 1 =" + roomRefKey + " and REF 2 =" + messageRefKey);
-    }
-    public void sendMessage(String message, Serializable item) {
-
-
-        if (item instanceof User || room_id == null) {
             DatabaseReference reference = databaseReference.child("chat").push();
-            room_id = reference.getKey();
-
-            User user = (User) item;
-            createRoom(user);
+            String room_id = reference.getKey();
             fitchMessages(room_id);
-        }
+            createRoom(user);
+        return new Connection(user.getName(),user.getPic(),room_id);
+    }
+    public void sendMessage(String message) {
+
 
             DatabaseReference reference = databaseReference.child("chat").child(room_id).push();
            // String pushIdMessage = reference.getKey();
@@ -237,19 +212,7 @@ public class ChatManager {
 
 
     }
-    public  void testMessage(){
-        /*DatabaseReference databaseReference1;
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ssZZ", Locale.ENGLISH);
-        String time = simpleDateFormat.format(c);
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("id_user", "01");
-        childUpdates.put("message", "Hmd onta");
-        childUpdates.put("time", time);
-        databaseReference=FirebaseDatabase.getInstance().getReference();
-        databaseReference1=databaseReference.child("chat").child(pushIdRoom);*/
-        Log.e("Item","REF = ");
-    }
+
 
 
     public void createRoom(User user) {
@@ -275,4 +238,5 @@ public class ChatManager {
 
 
     }
+
 }

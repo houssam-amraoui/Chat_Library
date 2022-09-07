@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.pam.chatlib.ChatManager;
 import com.pam.chatlib.interfaces.AdapterClickListener;
@@ -33,8 +32,6 @@ public class UsersActivity extends AppCompatActivity {
         chatManager.fitchUsers(new AdapterClickListener() {
             @Override
             public void onItemClick(int pos, Object item, View view) {
-
-
                 Intent usersActivity = new Intent(UsersActivity.this,ChatActivity.class);
                 usersActivity.putExtra("item",(Serializable)item);
                 startActivity(usersActivity);
@@ -42,7 +39,6 @@ public class UsersActivity extends AppCompatActivity {
 
             @Override
             public boolean onLongItemClick(int pos, Object item, View view) {
-                Toast.makeText(UsersActivity.this, pos +" LongClick", Toast.LENGTH_SHORT).show();
 
                 return false;
             }

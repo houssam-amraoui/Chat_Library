@@ -46,8 +46,6 @@ public class ConnectionsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int pos, Object item, View view) {
 
-                Toast.makeText(ConnectionsActivity.this, pos +" Click", Toast.LENGTH_SHORT).show();
-
                 Intent usersActivity = new Intent(ConnectionsActivity.this,ChatActivity.class);
                 usersActivity.putExtra("item", (Serializable) item);
                 startActivity(usersActivity);
@@ -55,7 +53,6 @@ public class ConnectionsActivity extends AppCompatActivity {
 
             @Override
             public boolean onLongItemClick(int pos, Object item, View view) {
-                Toast.makeText(ConnectionsActivity.this, pos +" LongClick", Toast.LENGTH_SHORT).show();
 
                 return false;
             }
