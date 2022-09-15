@@ -7,6 +7,37 @@ public class Connection implements Serializable {
     String pic;
     String room_id;
 
+  /*  public static final String CONNECTION_TYPE_MESSAGE = "MESSAGE";
+    public static final String CONNECTION_TYPE_FAVORITE = "FAVORITE";
+    public static final String CONNECTION_TYPE_VISITOR = "VISITOR";
+
+    public static final String MESSAGE_TYPE_CHAT = "CHAT";
+    public static final String MESSAGE_TYPE_MATCHED = "MATCHED";
+    public static final String MESSAGE_TYPE_IMAGE = "IMAGE";
+    public static final String MESSAGE_TYPE_CALL = "CALL";
+
+    public static final String COL_CONNECTION_TYPE = "type";
+    public static final String COL_MESSAGE_TYPE = "messageType";
+    public static final String COL_USER_FROM = "fromUser";
+    public static final String COL_USER_TO = "toUser";
+    public static final String COL_USER_FROM_ID = "fromUserId";
+    public static final String COL_USER_TO_ID = "toUserId";
+    public static final String COL_IMAGE = "image";
+    public static final String COL_TEXT = "text";
+    public static final String COL_READ = "read";
+    public static final String COL_READ_SENDER = "read_sender";
+    public static final String COL_READ_RECEIVER = "read_receiver";
+    public static final String COL_COUNT = "count";
+    public static final String COL_MESSAGE = "message";
+    public static final String COL_MESSAGE_ID = "messageId";
+    public static final String COL_CREATED_AT = "createdAt";
+    public static final String COL_UPDATED_AT = "updatedAt";
+
+    public static final String COL_HIDDEN_SENDER = "hiddenBySender";
+    public static final String COL_HIDDEN_RECEIVER = "hiddenByReceiver";*/
+
+
+
     public Connection() {
     }
 

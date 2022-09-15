@@ -309,17 +309,17 @@
 
     <include
         android:id="@+id/gallery"
+        layout="@layout/activity_list"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:visibility="gone"
-        layout="@layout/activity_list"/>
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/prograss_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/white"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <ProgressBar

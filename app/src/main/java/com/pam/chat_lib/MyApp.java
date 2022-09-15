@@ -22,10 +22,12 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         EmojiManager.install(new TwitterEmojiProvider());
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // database.useEmulator("10.0.2.2", 9000);
 
         chatManager = ChatManager.Builder()
                // .setCurrentUserToken("1")
-                .setDataReference(FirebaseDatabase.getInstance().getReference())
+                .setDataReference(database.getReference())
                 .setItemUserIds(new ItemUserIds())
                 .setItemConversationIds(new ItemConversationIds(R.layout.item_conversation, R.id.root,R.id.image,R.id.title,R.id.countContainer,R.id.countBadge,R.id.iconBadge,R.id.message,R.id.favourite,R.id.peopleNearby_personStatus))
                 .setItemMessageIds(new ItemMessageIds(R.layout.item_message_received,R.layout.item_message_sent, R.id.text_message_body, R.id.text_message_time, R.id.status_messages,R.id.chatMessage_photo_loading, R.id.image_lyt,R.id.chatMessage_photo_image))

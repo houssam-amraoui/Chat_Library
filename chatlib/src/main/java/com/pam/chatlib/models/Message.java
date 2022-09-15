@@ -5,6 +5,23 @@ public class Message  {
 	 String message;
 	 String time;
 
+	/*public static final String SENDER_AUTHOR = "fromUser";
+	public static final String SENDER_AUTHOR_ID = "fromUserId";
+
+	public static final String RECEIVER_AUTHOR = "toUser";
+	public static final String RECEIVER_AUTHOR_ID = "toUserId";
+
+	public static final String MESSAGE = "message";
+	public static final String MESSAGE_FILE = "messageFile";
+	public static final String IS_MESSAGE_FILE = "isMessageFile";
+	public static final String MESSAGE_FILE_UPLOADED = "fileUploaded";
+	public String imagePath;
+
+	public static final String COL_READ = "read";
+
+	public static final String COL_CONNECTION = "Connections";
+	public static final String COL_CONNECTION_ID = "ConnectionsId";*/
+
 
 	public Message() {
 	}
